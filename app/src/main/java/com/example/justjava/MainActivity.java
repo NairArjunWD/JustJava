@@ -32,7 +32,7 @@ public class MainActivity extends AppCompatActivity {
      * This method is called when the order button is clicked.
      */
     public void submitOrder(View view) {
-        int quantity = 3;
+        int quantity = 2;
         display (quantity);
         displayPrice(quantity * 5);
     }
@@ -51,5 +51,23 @@ public class MainActivity extends AppCompatActivity {
     private void displayPrice(int number) {
         TextView priceTextView = (TextView) findViewById(R.id.price_text_view);
         priceTextView.setText(NumberFormat.getCurrencyInstance().format(number));
+    }
+
+    /**
+     * This method is called when the add button is clicked.
+     */
+    public void increment(View view) {
+        int quantity = 3;
+        display (quantity);
+        displayPrice(quantity * 5);
+    }
+
+    /**
+     * This method is called when the minus button is clicked.
+     */
+    public void decrement(View view) {
+        int quantity = 1;
+        display (quantity);
+        displayPrice(quantity * 5);
     }
 }
