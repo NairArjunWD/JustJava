@@ -60,8 +60,6 @@
         android:textSize="16sp"
         android:layout_marginBottom="16dp" />
 
-<!--    Add string here. -->
-
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
