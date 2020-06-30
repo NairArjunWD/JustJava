@@ -10,6 +10,8 @@ package com.example.justjava;
 
 
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -79,7 +81,18 @@ public class MainActivity extends AppCompatActivity {
 
         int price = calculatePrice(hasWhippedCream, hasChocolate);
         String priceMessage = createOrderSummary(name, price, hasWhippedCream, hasChocolate);
-        displayMessage(priceMessage);
+
+
+        Intent intent = new Intent(Intent.ACTION_SENDTO);
+        intent.setData(Uri.parse("mailto:"));
+        intent.putExtra(Intent.EXTRA_EMAIL, "addresses");
+        intent.putExtra(Intent.EXTRA_SUBJECT, "Just Java Order for " + name);
+        intent.putExtra(Intent.EXTRA_TEXT, priceMessage);
+        if (intent.resolveActivity(getPackageManager()) != null) {
+            startActivity(intent);
+        }
+
+
 
 
     }
@@ -133,22 +146,6 @@ public class MainActivity extends AppCompatActivity {
     private void displayQuantity(int coffeeAmount) {
         TextView quantityTextView = (TextView) findViewById(R.id.quantity_text_view);
         quantityTextView.setText("" + coffeeAmount);
-    }
-
-    /**
-     * This method displays the given price on the screen.
-     */
-    private void displayPrice(int number) {
-        TextView priceTextView = (TextView) findViewById(R.id.order_summary_text_view);
-        priceTextView.setText(NumberFormat.getCurrencyInstance().format(number));
-    }
-
-    /**
-     * This method displays the given text on the screen.
-     */
-    private void displayMessage(String message) {
-        TextView orderSummaryTextView = (TextView) findViewById(R.id.order_summary_text_view);
-        orderSummaryTextView.setText(message);
     }
 
 
